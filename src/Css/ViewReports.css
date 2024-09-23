@@ -1,0 +1,43 @@
+.dashboard-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.report-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.report-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.report-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.report-list button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.report-list button:hover {
+  background-color: #0056b3;
+}

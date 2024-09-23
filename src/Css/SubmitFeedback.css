@@ -1,0 +1,56 @@
+/* Styles for SubmitFeedback Component */
+.submit-feedback-container {
+  padding: 25px;
+  background-color: #f9f9f9; /* Softer background color */
+  border-radius: 15px; /* More rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow for a more elevated look */
+  margin-bottom: 30px;
+}
+
+.submit-feedback-container h1 {
+  font-size: 2.2rem; /* Slightly larger font */
+  color: #2c3e50; /* Darker and richer color for the heading */
+  margin-bottom: 25px; /* Increased spacing below heading */
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Increased gap between form elements */
+}
+
+.feedback-form label {
+  font-size: 1.3rem; /* Slightly larger font */
+  color: #2c3e50; /* Consistent with the heading color */
+}
+
+.feedback-form textarea {
+  padding: 15px; /* Increased padding for a more spacious feel */
+  font-size: 1.1rem; /* Slightly larger font size for readability */
+  border: 1px solid #bdc3c7; /* Softer border color */
+  border-radius: 8px; /* More rounded corners */
+  height: 160px; /* Slightly increased height */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition for focus effect */
+}
+
+.feedback-form textarea:focus {
+  border-color: #00796b; /* Highlight border color on focus */
+  box-shadow: 0 0 8px rgba(0, 121, 107, 0.5); /* Subtle shadow on focus */
+  outline: none;
+}
+
+.submit-feedback-button {
+  background-color: #1abc9c; /* Softer and brighter teal color */
+  color: #fff;
+  border: none;
+  padding: 12px 25px; /* More padding for a larger button */
+  border-radius: 8px; /* More rounded corners */
+  cursor: pointer;
+  font-size: 1.1rem; /* Slightly larger font size */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition and hover effect */
+}
+
+.submit-feedback-button:hover {
+  background-color: #16a085; /* Darker shade on hover */
+  transform: scale(1.05); /* Slight scaling effect on hover */
+}

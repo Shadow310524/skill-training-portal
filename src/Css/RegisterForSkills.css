@@ -1,0 +1,30 @@
+/* Register for Skills Styles */
+.register-skills-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.register-skills-container h2 {
+  font-size: 1.8rem;
+  color: #00796b;
+  margin-bottom: 15px;
+}
+
+.register-skills-list {
+  list-style: none;
+  padding: 0;
+}
+
+.register-skills-list li {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.register-skills-list li:last-child {
+  border-bottom: none;
+}
