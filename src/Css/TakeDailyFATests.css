@@ -1,0 +1,48 @@
+/* Styles for TakeDailyFATests Component */
+.daily-fa-tests-container {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .daily-fa-tests-container h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .test-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .test-item {
+    padding: 15px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .test-item h3 {
+    font-size: 1.4rem;
+    color: #333;
+  }
+  
+  .start-test-button {
+    background-color: #00796b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .start-test-button:hover {
+    background-color: #004d40;
+  }
+  

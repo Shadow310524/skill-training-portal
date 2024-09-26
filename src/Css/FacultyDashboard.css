@@ -1,0 +1,72 @@
+/* General styles for the Faculty Dashboard */
+.faculty-dashboard-content {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.attendance-header,
+.verify-students-table,
+.feedback-table {
+  margin-bottom: 20px;
+}
+
+.attendance-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.attendance-header label {
+  margin-right: 10px;
+}
+
+.attendance-header input {
+  padding: 5px;
+}
+
+.attendance-table,
+.verify-students-table,
+.feedback-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.attendance-table th,
+.verify-students-table th,
+.feedback-table th {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.attendance-table td,
+.verify-students-table td,
+.feedback-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.verify-button,
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.verify-button:hover,
+.save-button:hover {
+  background-color: #45a049;
+}

@@ -1,0 +1,101 @@
+/* src/Css/DashboardCommon.css */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f4f4f4; /* Light background for the dashboard */
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333; /* Dark text color for better readability */
+  margin-bottom: 20px;
+}
+
+.widget-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.widget {
+  background-color: #ffffff; /* White background for widgets */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 220px; /* Adjust width as needed */
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.widget:hover {
+  background-color: #f0f0f0; /* Light grey on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.widget i {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.widget h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Specific styles for different dashboards */
+.admin-widget {
+  background-color: #e3f2fd; /* Light blue background for admin widgets */
+}
+
+.faculty-widget {
+  background-color: #e8f5e9; /* Light green background for faculty widgets */
+}
+
+.student-widget {
+  background-color: #fce4ec; /* Light pink background for student widgets */
+}
+
+/* Navbar styling */
+.navbar {
+  background-color: #333; /* Greyish black background */
+  color: #ffffff; /* White text */
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar li {
+  margin: 0 15px;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #f4f4f4; /* Light color on hover */
+}
+
+.navbar .active a {
+  border-bottom: 2px solid #ffffff; /* Underline for active link */
+}

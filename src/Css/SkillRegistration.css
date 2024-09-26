@@ -1,0 +1,51 @@
+.skill-registration-container {
+  text-align: center;
+  margin: 50px auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skill-selection {
+  margin-bottom: 20px;
+}
+
+.skills-list {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.skill-registration-container select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.skills-list div {
+  margin: 10px 0;
+}
+
+.skills-list label {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.skill-registration-container button {
+  padding: 12px 24px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.skill-registration-container button:hover {
+  background-color: #0056b3;
+}
