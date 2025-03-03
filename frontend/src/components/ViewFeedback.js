@@ -1,12 +1,23 @@
-import React from 'react';
-import '../Css/FacultyDashboard.css'; // Ensure this CSS file is created
+import React, { useEffect, useState } from 'react';
+import '../Css/FacultyDashboard.css'; // Ensure this CSS file is available
 
 const ViewFeedback = () => {
-  const feedbacks = [
-    { id: 1, student: 'John Doe', feedback: 'Great session!' },
-    { id: 2, student: 'Jane Smith', feedback: 'Very informative.' },
-    { id: 3, student: 'Emily Johnson', feedback: 'Well organized.' },
-  ]; // Replace with dynamic data if needed
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  useEffect(() => {
+    fetchFeedback();
+  }, []);
+
+  const fetchFeedback = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/feedback/all");
+      if (!response.ok) throw new Error("Failed to fetch feedback");
+      const data = await response.json();
+      setFeedbacks(data);
+    } catch (error) {
+      console.error("Error fetching feedback:", error);
+    }
+  };
 
   return (
     <div className="faculty-dashboard-content">
@@ -21,8 +32,8 @@ const ViewFeedback = () => {
         <tbody>
           {feedbacks.map((feedback) => (
             <tr key={feedback.id}>
-              <td>{feedback.student}</td>
-              <td>{feedback.feedback}</td>
+              <td>{feedback.studentName}</td>
+              <td>{feedback.feedbackText}</td>
             </tr>
           ))}
         </tbody>

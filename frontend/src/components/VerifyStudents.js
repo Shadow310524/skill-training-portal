@@ -1,16 +1,41 @@
-import React from 'react';
-import '../Css/FacultyDashboard.css'; // Ensure this CSS file is created
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../Css/FacultyDashboard.css"; // Ensure this CSS file exists
 
 const VerifyStudents = () => {
-  const students = [
-    { id: 1, name: 'John Doe', status: 'Pending' },
-    { id: 2, name: 'Jane Smith', status: 'Verified' },
-    { id: 3, name: 'Emily Johnson', status: 'Pending' },
-  ]; // Replace with dynamic data if needed
+  const [students, setStudents] = useState([]);
 
-  const handleVerify = (id) => {
-    // Add logic to verify student
-    console.log(`Verified student with ID: ${id}`);
+  // Fetch students from backend
+  useEffect(() => {
+    fetchStudents();
+  }, []);
+
+  const fetchStudents = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/api/students");
+      setStudents(response.data);
+    } catch (error) {
+      console.error("Error fetching students:", error);
+    }
+  };
+
+  // Function to verify or reject a student
+  const updateStatus = async (id, status) => {
+    const endpoint =
+      status === "Verified"
+        ? `http://localhost:8080/api/students/${id}/verify`
+        : `http://localhost:8080/api/students/${id}/reject`;
+
+    try {
+      await axios.put(endpoint);
+      setStudents((prevStudents) =>
+        prevStudents.map((student) =>
+          student.id === id ? { ...student, status } : student
+        )
+      );
+    } catch (error) {
+      console.error(`Error updating status for student ${id}:`, error);
+    }
   };
 
   return (
@@ -30,15 +55,25 @@ const VerifyStudents = () => {
               <td>{student.name}</td>
               <td>{student.status}</td>
               <td>
-                {student.status === 'Pending' ? (
-                  <button
-                    className="verify-button"
-                    onClick={() => handleVerify(student.id)}
-                  >
-                    Verify
-                  </button>
+                {student.status === "Pending" ? (
+                  <>
+                    <button
+                      className="verify-button"
+                      onClick={() => updateStatus(student.id, "Verified")}
+                    >
+                      ✅ Verify
+                    </button>
+                    <button
+                      className="reject-button"
+                      onClick={() => updateStatus(student.id, "Rejected")}
+                    >
+                      ❌ Reject
+                    </button>
+                  </>
+                ) : student.status === "Verified" ? (
+                  "✅ Verified"
                 ) : (
-                  'Verified'
+                  "❌ Rejected"
                 )}
               </td>
             </tr>

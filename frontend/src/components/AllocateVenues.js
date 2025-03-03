@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import '../Css/AdminDashboard.css';
+import React, { useEffect, useState } from 'react';
 
 const AllocateVenues = () => {
-  const [venues, setVenues] = useState([
-    { name: 'Room 101', capacity: '30' },
-    { name: 'Lab 202', capacity: '20' },
-  ]);
-
+  const [venues, setVenues] = useState([]);
   const [newVenue, setNewVenue] = useState({ name: '', capacity: '' });
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/venues")
+      .then((res) => res.json())
+      .then((data) => setVenues(data))
+      .catch((error) => console.error("Error fetching venues:", error));
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -15,13 +17,22 @@ const AllocateVenues = () => {
   };
 
   const handleAddVenue = () => {
-    setVenues([...venues, newVenue]);
+    fetch("http://localhost:8080/api/venues", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newVenue),
+    })
+      .then((res) => res.json())
+      .then((data) => setVenues([...venues, data]))
+      .catch((error) => console.error("Error adding venue:", error));
+
     setNewVenue({ name: '', capacity: '' });
   };
 
-  const handleRemoveVenue = (index) => {
-    const updatedVenues = venues.filter((_, i) => i !== index);
-    setVenues(updatedVenues);
+  const handleRemoveVenue = (id) => {
+    fetch(`http://localhost:8080/api/venues/${id}`, { method: "DELETE" })
+      .then(() => setVenues(venues.filter((venue) => venue.id !== id)))
+      .catch((error) => console.error("Error deleting venue:", error));
   };
 
   return (
@@ -37,7 +48,7 @@ const AllocateVenues = () => {
           required
         />
         <input
-          type="text"
+          type="number"
           name="capacity"
           placeholder="Capacity"
           value={newVenue.capacity}
@@ -50,10 +61,10 @@ const AllocateVenues = () => {
       <div className="venue-list">
         <h3>Venue List</h3>
         <ul>
-          {venues.map((venue, index) => (
-            <li key={index}>
+          {venues.map((venue) => (
+            <li key={venue.id}>
               {venue.name} - Capacity: {venue.capacity}
-              <button onClick={() => handleRemoveVenue(index)}>Remove</button>
+              <button onClick={() => handleRemoveVenue(venue.id)}>Remove</button>
             </li>
           ))}
         </ul>

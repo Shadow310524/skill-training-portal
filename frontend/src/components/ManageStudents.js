@@ -1,23 +1,46 @@
-import React, { useState } from 'react';
-import '../Css/AdminDashboard.css';
+import React, { useState, useEffect } from "react";
+import "../Css/AdminDashboard.css";
 
 const ManageStudents = () => {
   const [students, setStudents] = useState([]);
-  const [newStudent, setNewStudent] = useState({ name: '', course: '' });
+  const [newStudent, setNewStudent] = useState({ name: "", course: "" });
 
+  // Fetch students from backend
+  useEffect(() => {
+    fetch("http://localhost:8080/api/students")
+      .then((response) => response.json())
+      .then((data) => setStudents(data))
+      .catch((error) => console.error("Error fetching students:", error));
+  }, []);
+
+  // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewStudent({ ...newStudent, [name]: value });
   };
 
+  // Add student to backend
   const handleAddStudent = () => {
-    setStudents([...students, newStudent]);
-    setNewStudent({ name: '', course: '' });
+    fetch("http://localhost:8080/api/students", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newStudent),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setStudents([...students, data]); // Update UI
+        setNewStudent({ name: "", course: "" });
+      })
+      .catch((error) => console.error("Error adding student:", error));
   };
 
-  const handleRemoveStudent = (index) => {
-    const updatedStudents = students.filter((_, i) => i !== index);
-    setStudents(updatedStudents);
+  // Remove student
+  const handleRemoveStudent = (id) => {
+    fetch(`http://localhost:8080/api/students/${id}`, { method: "DELETE" })
+      .then(() => {
+        setStudents(students.filter((student) => student.id !== id)); // Update UI
+      })
+      .catch((error) => console.error("Error deleting student:", error));
   };
 
   return (
@@ -46,10 +69,10 @@ const ManageStudents = () => {
       <div className="student-list">
         <h3>Student List</h3>
         <ul>
-          {students.map((student, index) => (
-            <li key={index}>
+          {students.map((student) => (
+            <li key={student.id}>
               {student.name} - {student.course}
-              <button onClick={() => handleRemoveStudent(index)}>Remove</button>
+              <button onClick={() => handleRemoveStudent(student.id)}>Remove</button>
             </li>
           ))}
         </ul>
