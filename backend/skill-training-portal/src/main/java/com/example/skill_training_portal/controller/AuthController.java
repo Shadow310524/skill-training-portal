@@ -1,4 +1,4 @@
-package com.example.skill_training_portal.comtroller;
+package com.example.skill_training_portal.controller;
 
 import com.example.skill_training_portal.entity.User;
 import com.example.skill_training_portal.service.UserService;

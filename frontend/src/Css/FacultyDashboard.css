@@ -1,72 +1,112 @@
-/* General styles for the Faculty Dashboard */
+/* Faculty Dashboard - Super High-Quality CSS */
+
+:root {
+  --primary-color: #4A90E2;
+  --secondary-color: #2C3E50;
+  --success-color: #27AE60;
+  --error-color: #E74C3C;
+  --background-light: #F4F7FC;
+  --text-dark: #34495E;
+  --table-border: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+}
+
 .faculty-dashboard-content {
+  max-width: 1200px;
+  margin: 40px auto;
   padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-h1 {
-  font-size: 2em;
+.attendance-header, h1 {
+  text-align: center;
+  font-size: 26px;
+  color: var(--primary-color);
   margin-bottom: 20px;
 }
 
-.attendance-header,
-.verify-students-table,
-.feedback-table {
-  margin-bottom: 20px;
-}
-
-.attendance-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.attendance-header label {
-  margin-right: 10px;
-}
-
-.attendance-header input {
-  padding: 5px;
-}
-
-.attendance-table,
-.verify-students-table,
-.feedback-table {
+/* Table Styling */
+.attendance-table, .verify-students-table, .feedback-table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.attendance-table th,
-.verify-students-table th,
-.feedback-table th {
-  background-color: #f4f4f4;
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-}
-
-.attendance-table td,
-.verify-students-table td,
-.feedback-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-}
-
-.verify-button,
-.save-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+th, td {
+  padding: 12px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 5px;
+  border-bottom: 1px solid var(--table-border);
 }
 
-.verify-button:hover,
-.save-button:hover {
-  background-color: #45a049;
+th {
+  background-color: var(--secondary-color);
+  color: white;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background-color: #ECF0F1;
+}
+
+/* Buttons */
+button {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.present-button {
+  background: var(--success-color);
+  color: white;
+}
+
+.absent-button {
+  background: var(--error-color);
+  color: white;
+}
+
+.verify-button {
+  background: var(--success-color);
+  color: white;
+}
+
+.reject-button {
+  background: var(--error-color);
+  color: white;
+}
+
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.selected {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Status Indicators */
+.status-indicator {
+  font-weight: bold;
+}
+
+.loading-text {
+  text-align: center;
+  font-style: italic;
+  color: var(--secondary-color);
+  margin-top: 15px;
 }

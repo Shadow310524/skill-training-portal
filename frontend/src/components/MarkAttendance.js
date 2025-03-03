@@ -1,35 +1,47 @@
-import React, { useState } from 'react';
-import '../Css/FacultyDashboard.css'; // Ensure this CSS file is created
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../Css/FacultyDashboard.css"; // Ensure correct path
 
 const MarkAttendance = () => {
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-  const students = [
-    { id: 1, name: 'John Doe' },
-    { id: 2, name: 'Jane Smith' },
-    { id: 3, name: 'Emily Johnson' },
-  ]; // Replace with dynamic data if needed
+  const [students, setStudents] = useState([]);
+  const [status, setStatus] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/students")
+      .then((response) => {
+        setStudents(response.data.filter((student) => student.status === "Verified"));
+      })
+      .catch((error) => console.error("Error fetching students:", error));
+  }, []);
+
+  const markAttendance = (id, present) => {
+    setLoading(true);
+    axios
+      .post(`http://localhost:8080/api/attendance/${id}?present=${present}`)
+      .then(() => {
+        setStatus((prevStatus) => ({
+          ...prevStatus,
+          [id]: present ? "✅ Present" : "❌ Absent",
+        }));
+      })
+      .catch((error) => {
+        console.error(`Error marking attendance for ${id}:`, error);
+        alert("Failed to mark attendance. Please try again.");
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
     <div className="faculty-dashboard-content">
-      <h1>Mark Attendance</h1>
-      <div className="attendance-header">
-        <label htmlFor="date">Date:</label>
-        <input
-          type="date"
-          id="date"
-          value={date}
-          onChange={handleDateChange}
-        />
-      </div>
+      <h1 className="attendance-header">📌 Mark Attendance</h1>
       <table className="attendance-table">
         <thead>
           <tr>
             <th>Student Name</th>
-            <th>Present</th>
+            <th>Action</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -37,13 +49,29 @@ const MarkAttendance = () => {
             <tr key={student.id}>
               <td>{student.name}</td>
               <td>
-                <input type="checkbox" />
+                <button
+                  className={`present-button ${status[student.id] === "✅ Present" ? "selected" : ""}`}
+                  onClick={() => markAttendance(student.id, true)}
+                  disabled={loading}
+                >
+                  ✅ Present
+                </button>
+                <button
+                  className={`absent-button ${status[student.id] === "❌ Absent" ? "selected" : ""}`}
+                  onClick={() => markAttendance(student.id, false)}
+                  disabled={loading}
+                >
+                  ❌ Absent
+                </button>
+              </td>
+              <td className="status-indicator">
+                {status[student.id] || "⏳ Not Marked"}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button className="save-button">Save</button>
+      {loading && <p className="loading-text">Updating attendance...</p>}
     </div>
   );
 };
